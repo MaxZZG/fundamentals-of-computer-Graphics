@@ -246,3 +246,5 @@ TSWLatexianTemp*
 # generated if using elsarticle.cls
 *.spl
 
+# Main.pdf
+Main.pdf
