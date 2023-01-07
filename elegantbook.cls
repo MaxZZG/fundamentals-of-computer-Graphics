@@ -297,6 +297,7 @@
 \definecolor{main1}{RGB}{0,120,2}%
 \definecolor{second1}{RGB}{230,90,7}%
 \definecolor{third1}{RGB}{0,160,152}%
+\definecolor{ForestGreen}{RGB}{2, 94, 4}
 %cyan color
 \definecolor{structure2}{RGB}{31,186,190}%
 \definecolor{main2}{RGB}{59,180,5}%
@@ -818,10 +819,10 @@
 \newcommand*{\eitemi}{\tikz \draw [baseline, ball color=structurecolor,draw=none] circle (2pt);}
 \newcommand*{\eitemii}{\tikz \draw [baseline, fill=structurecolor,draw=none,circular drop shadow] circle (2pt);}
 \newcommand*{\eitemiii}{\tikz \draw [baseline, fill=structurecolor,draw=none] circle (2pt);}
-\setlist[enumerate,1]{label=\color{structurecolor}\arabic*.}
-\setlist[enumerate,2]{label=\color{structurecolor}(\alph*).}
-\setlist[enumerate,3]{label=\color{structurecolor}\Roman*.}
-\setlist[enumerate,4]{label=\color{structurecolor}\Alph*.}
+\setlist[enumerate,1]{label=\color{ForestGreen}\arabic*.}
+\setlist[enumerate,2]{label=\color{ForestGreen}(\alph*).}
+\setlist[enumerate,3]{label=\color{ForestGreen}\Roman*.}
+\setlist[enumerate,4]{label=\color{ForestGreen}\Alph*.}
 \setlist[itemize,1]{label={\eitemi}}
 \setlist[itemize,2]{label={\eitemii}}
 \setlist[itemize,3]{label={\eitemiii}}
@@ -838,17 +839,17 @@
 
 \setcounter{secnumdepth}{5}
 \titleformat{\chapter}[\style]{\bfseries}{
-  \filcenter\LARGE\enspace\bfseries{\color{structurecolor} \IfAppendix{\appendixname\;\thechapter\;}{\xchaptertitle\;}}}{1pt}{
-  \LARGE\bfseries\color{structurecolor}\filcenter}[]
+  \filcenter\LARGE\enspace\bfseries{\color{ForestGreen} \IfAppendix{\appendixname\;\thechapter\;}{\xchaptertitle\;}}}{1pt}{
+  \LARGE\bfseries\color{ForestGreen}\filcenter}[]
 \titleformat{\section}[hang]{\bfseries}{
-  \Large\bfseries{\color{structurecolor}\thesection}\enspace}{1pt}{%
-  \color{structurecolor}\Large\bfseries\filright}
+  \Large\bfseries{\color{ForestGreen}\thesection}\enspace}{1pt}{%
+  \color{ForestGreen}\Large\bfseries\filright}
 \titleformat{\subsection}[hang]{\bfseries}{
-  \large\bfseries\color{structurecolor}\thesubsection\enspace}{1pt}{%
-  \color{structurecolor}\large\bfseries\filright}
+  \large\bfseries\color{ForestGreen}\thesubsection\enspace}{1pt}{%
+  \color{ForestGreen}\large\bfseries\filright}
 \titleformat{\subsubsection}[hang]{\bfseries}{
-  \large\bfseries\color{structurecolor}\thesubsubsection\enspace}{1pt}{%
-  \color{structurecolor}\large\bfseries\filright}
+  \large\bfseries\color{ForestGreen}\thesubsubsection\enspace}{1pt}{%
+  \color{ForestGreen}\large\bfseries\filright}
 
 \titlespacing{\chapter}{0pt}{-20pt}{1.3\baselineskip}
 %\titlespacing{\subsection}{0pt}{0.5\baselineskip}{-\baselineskip}
