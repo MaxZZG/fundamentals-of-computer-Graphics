@@ -365,9 +365,27 @@
 \end{example}
 
 \begin{example}
-	使用我们提出的缩放矩阵，非均匀缩放只能沿坐标轴进行。
+	使用我们提出的缩放矩阵，非均匀缩放只能沿坐标轴进行。如果我们想拉伸沿着时钟的一条对角线拉伸时钟50\%，使8:00到1:00移动到西北方向，2:00到7:00移动到东南方向，我们可以使用一个结合了轴对齐缩放矩阵的旋转矩阵来达到这个目的。其想法是使用旋转将缩放轴与坐标轴对齐，然后沿该轴缩放，然后旋转回来。在我们的示例中，缩放轴是正方形的“反斜杠”对角线，我们可以使其与$x$轴平行，旋转$+45^{\circ}$。将这些操作放在一起，完整的变换矩阵是：
 	
+	\begin{equation}
+		\operatorname{rotate}\left(-45^{\circ}\right) \operatorname{scale}(1.5,1) \operatorname{rotate}\left(45^{\circ}\right)
+		\nonumber
+	\end{equation}
 	
+	在数学符号中，这可以写成$\mathbf{R}\mathbf{S}\mathbf{R}^{\mathbf{T}}$。将三个矩阵相乘的结果是：
+	
+	\begin{equation}
+		\left[\begin{array}{cc}
+			1.25 & -0.25 \\
+			-0.25 & 1.25
+		\end{array}\right]
+	\nonumber
+	\end{equation}
+	
+	从旋转和缩放变换中建立起的变换实际上对任何线性变换都是有效的，这诱导我们对这些变换进行强烈的思考，在下一节将进行探讨。
 	
 \end{example}
+
+\subsection{变换的分解(Decomposition of Transformations)}
+
 
