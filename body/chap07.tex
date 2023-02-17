@@ -388,4 +388,39 @@
 
 \subsection{变换的分解(Decomposition of Transformations)}
 
+有时有必要 "撤销 "一个变换的组合，把一个变换拆成更简单的部分。例如，相对于单独的旋转和缩放，以变换矩阵的形式呈现给用户进行操作通常是有用的，但是一个变换可能被简单地表示为一个矩阵，旋转和缩放已经混合在一起。如果可以通过计算将矩阵分解成所需的部分，调整这些部分，并通过将这些部分再次相乘来重新组装矩阵，就可以实现这种操作。
+
+事实证明，这种分解或矩阵分解是可能的，不管矩阵中的内容是什么。这提供了一种很有效的方式来思考变换以及它们对变换的几何体所做的操作。
+
+\subsubsection*{\textcolor{structure3}{对称特征值分解(Symmetric Eigenvalue Decomposition)}}
+
+让我们从对称阵开始。还记得第\ref{6.4}小节说过，对称阵总是可以通过特征值分解以下矩阵相乘的形式:
+
+\begin{equation}
+    \mathbf{A} = \mathbf{R}\mathbf{S}\mathbf{R}^{\mathbf{T}}
+    \nonumber
+\end{equation}
+
+其中，$\mathbf{R}$是正交阵，$\mathbf{S}$是对角阵；我们称$\mathbf{R}$的列(特征向量)为$\mathbf{v}_{1}$和$\mathbf{v}_{2}$，称$\mathbf{S}$的对象项为$\lambda_{1}$和$\lambda_{2}$。
+
+在几何术语中，我们现在可以认出$\mathbf{R}$是旋转变换，$\mathbf{S}$是缩放变换，因此这只是一个多步骤的几何变换(图\ref{fig:7.12}):
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[scale=0.25]{Figure7.12.png}
+	\caption{。}
+	\label{fig:7.12}
+\end{figure}	
+
+\begin{enumerate}
+	\item 将$\mathbf{v}_{1}$和$\mathbf{v}_{2}$旋转到$x$轴和$y$轴上(通过旋转矩阵$\mathbf{R}^{T}$)
+	
+\end{enumerate}
+
+
+
+
+
+
+
 
