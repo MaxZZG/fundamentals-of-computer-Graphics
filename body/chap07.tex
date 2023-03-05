@@ -407,16 +407,28 @@
 
 \begin{figure}[htbp]
 	\centering
-	\includegraphics[scale=0.25]{Figure7.12.png}
+	\includegraphics[scale=0.27]{Figure7.12.png}
 	\caption{。}
 	\label{fig:7.12}
 \end{figure}	
 
 \begin{enumerate}
-	\item 将$\mathbf{v}_{1}$和$\mathbf{v}_{2}$旋转到$x$轴和$y$轴上(通过旋转矩阵$\mathbf{R}^{T}$)
+	\item 将$\mathbf{v}_{1}$和$\mathbf{v}_{2}$旋转到$x$轴和$y$轴上(旋转矩阵$\mathbf{R}^{T}$)。
 	
+	\item 通过$lambda_{1}$和$\lambda_{2}$缩放$x$和$y$(缩放矩阵$\mathbf{S}$)。
+	
+	\item 将$x$轴和$y$轴旋转回到$\mathbf{v}_{1}$和$\mathbf{v}_{2}$上(旋转矩阵$\mathbf{R}$)。
 \end{enumerate}
 
+把这三个变换的效果放在一起看，我们可以发现他们有将物体沿着一对轴进行非均匀缩放的效果。和轴对齐的缩放一样，两个轴是垂直的，但它们不是坐标轴，而是$\mathbf{A}$的特征向量\footnote{如果你喜欢计算维度：一个对称的$2 \times 2$的矩阵有3个自由度，而特征值分解将它们写为一个旋转角度和两个比例因子。}。这告诉我们关于对称矩阵的含义：对称矩阵只是一种缩放操作——尽管可能是不均匀的和非轴对齐的。
+
+\begin{example}
+
+
+
+
+\end{example}
+	
 
 
 
