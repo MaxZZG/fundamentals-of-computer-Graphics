@@ -405,13 +405,6 @@
 
 在几何术语中，我们现在可以认出$\mathbf{R}$是旋转变换，$\mathbf{S}$是缩放变换，因此这只是一个多步骤的几何变换(图\ref{fig:7.12}):
 
-\begin{figure}[htbp]
-	\centering
-	\includegraphics[scale=0.27]{Figure7.12.png}
-	\caption{。}
-	\label{fig:7.12}
-\end{figure}	
-
 \begin{enumerate}
 	\item 将$\mathbf{v}_{1}$和$\mathbf{v}_{2}$旋转到$x$轴和$y$轴上(旋转矩阵$\mathbf{R}^{T}$)。
 	
@@ -420,19 +413,214 @@
 	\item 将$x$轴和$y$轴旋转回到$\mathbf{v}_{1}$和$\mathbf{v}_{2}$上(旋转矩阵$\mathbf{R}$)。
 \end{enumerate}
 
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[scale=0.27]{Figure7.12.png}
+	\caption{当一个单位圆被一个任意的对称矩阵也就是非轴对齐、非均匀的矩阵$\mathbf{A}$进行转换时会发生什么。作为矩阵$\mathbf{A}$特征向量的两个垂直向量$\mathbf{v}_{1}$和$\mathbf{v}_{2}$保持了它们本来的方向，但是被缩放了。对于初等变换，这可以等价于首先将特征向量旋转到正则基，进行轴对齐的缩放，然后将正则基旋转回特征向量。}
+	\label{fig:7.12}
+\end{figure}	
+
 把这三个变换的效果放在一起看，我们可以发现他们有将物体沿着一对轴进行非均匀缩放的效果。和轴对齐的缩放一样，两个轴是垂直的，但它们不是坐标轴，而是$\mathbf{A}$的特征向量\footnote{如果你喜欢计算维度：一个对称的$2 \times 2$的矩阵有3个自由度，而特征值分解将它们写为一个旋转角度和两个比例因子。}。这告诉我们关于对称矩阵的含义：对称矩阵只是一种缩放操作——尽管可能是不均匀的和非轴对齐的。
 
 \begin{example}
+回忆第\ref{5.4}小节的例子:
 
+\begin{equation}
+	\begin{aligned}
+		{\left[\begin{array}{ll}
+				2 & 1 \\
+				1 & 1
+			\end{array}\right] } & =\mathbf{R}\left[\begin{array}{cc}
+			\lambda_1 & 0 \\
+			0 & \lambda_2
+		\end{array}\right] \mathbf{R}^{\mathrm{T}} \\
+		& =\left[\begin{array}{cc}
+			0.8507 & -0.5257 \\
+			0.5257 & 0.8507
+		\end{array}\right]\left[\begin{array}{cc}
+			2.618 & 0 \\
+			0 & 0.382
+		\end{array}\right]\left[\begin{array}{cc}
+			0.8507 & 0.5257 \\
+			-0.5257 & 0.8507
+		\end{array}\right] \\
+		& =\operatorname{rotate}\left(31.7^{\circ}\right) \operatorname{scale}(2.618,0.382) \operatorname{rotate}\left(-31.7^{\circ}\right) .
+	\end{aligned}
+\nonumber
+\end{equation}
 
+The matrix above, then, according to its eigenvalue decomposition, scales in a
+direction $31.7^{\circ}$ counterclockwise from three o’clock (the x-axis). This is a touch
+before 2 p.m. on the clockface as is confirmed by Figure \ref{fig:7.13}.(没看懂这句话。。。感觉应该说的是先进行了旋转，然后拉伸，再转回去。)
 
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[scale=0.4]{Figure7.13.png}
+	\caption{对称矩阵总是沿着某个轴进行缩放。在这种情况下，它沿着$\phi = 31.7^{\circ}$方向，这意味着这个矩阵的特征向量在这个方向上。}
+	\label{fig:7.13}
+\end{figure}	
+
+我们也可以将对角线化的过程倒过来；以$(\lambda_{1},\lambda_{2})$为比例，第一个比例方向为从X轴顺时针方向的角度$\phi$，我们有:
+
+\begin{equation}
+	\begin{aligned}
+		{\left[\begin{array}{rr}
+				\cos \phi & \sin \phi \\
+				-\sin \phi & \cos \phi
+			\end{array}\right]\left[\begin{array}{cc}
+				\lambda_1 & 0 \\
+				0 & \lambda_2
+			\end{array}\right]\left[\begin{array}{rr}
+				\cos \phi & -\sin \phi \\
+				\sin \phi & \cos \phi
+			\end{array}\right]=} & \\
+		& {\left[\begin{array}{ll}
+				\lambda_1 \cos ^2 \phi+\lambda_2 \sin ^2 \phi & \left(\lambda_2-\lambda_1\right) \cos \phi \sin \phi \\
+				\left(\lambda_2-\lambda_1\right) \cos \phi \sin \phi & \lambda_2 \cos ^2 \phi+\lambda_1 \sin ^2 \phi
+			\end{array}\right] . }
+	\end{aligned}
+\nonumber
+\end{equation}
+
+我们应该感到欣慰的是，这是一个如假包换的对称矩阵，因为我们从对称的特征值分解中构建了它。
 
 \end{example}
+
+
+\subsubsection*{\textcolor{structure3}{奇异值分解(Singular Value Decomposition)}}
+
+非对称矩阵也可以进行非常相似的分解:奇异值分解(SVD)，在第5.4.1节中有讨论。不同的是，对角矩阵两边的矩阵不再相同:
+
+\begin{equation}
+	\mathbf{A}=\mathbf{U S V}^{\mathrm{T}}
+	\nonumber
+\end{equation}
+
+取代旋转矩阵$\mathbf{R}$的两个正交矩阵被称为$\mathbf{U}$和$\mathbf{V}$，它们的列向量分别被称为$\mathbf{u}_{i}$(左奇异向量)和$\mathbf{v}_{i}$(右奇异向量)。
+
+在这种情况下，S的对角项被称为奇异值，而不是特征值。几何解释与对称特征值分解非常相似(图\ref{fig:7.14})
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[scale=0.45]{Figure7.14.png}
+	\caption{当一个单位圆被一个任意的对称矩阵也就是非轴对齐、非均匀的矩阵$\mathbf{A}$进行转换时会发生什么。作为矩阵$\mathbf{A}$特征向量的两个垂直向量$\mathbf{v}_{1}$和$\mathbf{v}_{2}$保持了它们本来的方向，但是被缩放了。对于初等变换，这可以等价于首先将右奇异向量旋转到正则基，进行轴对齐的缩放，然后将正则基旋转回左奇异向量。}
+	\label{fig:7.14}
+\end{figure}	
+
+\begin{enumerate}
+	\item 将$\mathbf{v}_{1}$和$\mathbf{v}_{2}$旋转到$x$轴和$y$轴上(旋转矩阵$\mathbf{V}^{T}$)。
 	
+	\item 通过$\sigma_{1}$和$\sigma_{2}$缩放$x$和$y$(缩放矩阵$\mathbf{S}$)。
+	
+	\item 将$x$轴和$y$轴旋转回到$\mathbf{v}_{1}$和$\mathbf{v}_{2}$上(旋转矩阵$\mathbf{U}$)。
+\end{enumerate}
 
+主要的区别就在旋转矩阵$\mathbf{R}$和两个不同的正交矩阵$\mathbf{V}$和$\mathbf{U}$。这种差异导致了另一个不太重要的差异。因为$\mathbf{SVD}$的两边有不同的奇异向量，所以不需要负的奇异值:我们总是可以改变一个奇异值的正负，然后翻转与其对应奇异向量的方向，最后得到相同的变换。如此，$\mathbf{SVD}$总是产生一个所有正项的对角矩阵，但是矩阵$\mathbf{U}$和$\mathbf{V}$并不保证是旋转--它们也可能包括反射。在几何应用例如图形学中，这是一个不便之处，但也只是一个小问题:通过检查行列式，很容易区分旋转和反射，旋转的行列式是$+1$，反射的行列式是$\textnormal{-}1 $。如果需要旋转，可以翻转其中一个奇异值的正负，从而产生一个旋转-缩放-旋转的序列，其中反射与缩放一起滚动，而不是与其中一个旋转一起(没看懂，原文: where the reflection is
+rolled in with the scale, rather than with one of the rotations.)。
 
+\begin{example}在第\ref{5.4.1}小节使用的例子实际上是剪切矩阵(图\ref{fig:7.12}):
+	\begin{equation}
+		\begin{aligned}
+			{\left[\begin{array}{ll}
+					1 & 1 \\
+					0 & 1
+				\end{array}\right] } & =\mathbf{R}_2\left[\begin{array}{cc}
+				\sigma_1 & 0 \\
+				0 & \sigma_2
+			\end{array}\right] \mathbf{R}_1 \\
+			& =\left[\begin{array}{cc}
+				0.8507 & -0.5257 \\
+				0.5257 & 0.8507
+			\end{array}\right]\left[\begin{array}{cc}
+				1.618 & 0 \\
+				0 & 0.618
+			\end{array}\right]\left[\begin{array}{rr}
+				0.5257 & 0.8507 \\
+				-0.8507 & 0.5257
+			\end{array}\right] \\
+			& =\operatorname{rotate}\left(31.7^{\circ}\right) \operatorname{scale}(1.618,0.618) \operatorname{rotate}\left(-58.3^{\circ}\right) .
+		\end{aligned}
+	\nonumber
+	\end{equation}
+	
+	SVD存在的一个直接后果是，我们所看到的所有2D变换矩阵都可以由旋转矩阵和缩放矩阵组成。剪切矩阵并不是变换所必需的矩阵，只是比较方便而已。
+	
+\end{example}
 
+总之，每个矩阵都可以通过奇异值分解($\mathbf{SVD}$)分解为一个旋转矩阵乘以缩放矩阵再乘以另一个旋转矩阵。只有对称矩阵才能通过特征值对角化分解为一个旋转矩阵乘以缩放矩阵再乘以这个旋转矩阵的逆。对称矩阵的奇异值分解(SVD)可以通过稍微复杂的代数运算得到与特征值分解相同的三矩阵乘积。
 
+\subsubsection*{\textcolor{structure3}{旋转剪切分解(Paeth Decomposition of Rotations)}}
 
+另一个分解使用剪切来表示非零旋转(Paeth,1990)。以下恒等式可用于实现该分解:
+
+\begin{equation}
+	\left[\begin{array}{cr}
+		\cos \phi & -\sin \phi \\
+		\sin \phi & \cos \phi
+	\end{array}\right]=\left[\begin{array}{cc}
+		1 & \frac{\cos \phi-1}{\sin \phi} \\
+		0 & 1
+	\end{array}\right]\left[\begin{array}{cc}
+		1 & 0 \\
+		\sin \phi & 1
+	\end{array}\right]\left[\begin{array}{cc}
+		1 & \frac{\cos \phi-1}{\sin \phi} \\
+		0 & 1
+	\end{array}\right]
+\nonumber
+\end{equation}
+
+例如，旋转$\pi / 4$($45^{\circ}$)是(如图\ref{fig:7.15}):
+
+\begin{equation}
+	\operatorname{rotate}\left(\frac{\pi}{4}\right)=\left[\begin{array}{cc}
+		1 & 1-\sqrt{2} \\
+		0 & 1
+	\end{array}\right]\left[\begin{array}{cc}
+		1 & 0 \\
+		\frac{\sqrt{2}}{2} & 1
+	\end{array}\right]\left[\begin{array}{cc}
+		1 & 1-\sqrt{2} \\
+		0 & 1
+	\end{array}\right]
+\label{con:7.2}
+\end{equation}
+
+这种特殊的变换对光栅旋转很有用，因为剪切对图像来说是一种非常有效的光栅操作；它引入了一些锯齿，但不会留下任何洞。关键的是，如果我们取一个栅格位置$(i,j)$并对其进行水平剪切，我们可以得到:
+
+\begin{equation}
+	\left[\begin{array}{ll}
+		1 & s \\
+		0 & 1
+	\end{array}\right]\left[\begin{array}{l}
+		i \\
+		j
+	\end{array}\right]=\left[\begin{array}{c}
+		i + s j \\
+		j
+	\end{array}\right]
+\end{equation}
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[scale=0.45]{Figure7.15.png}
+	\caption{任何二维旋转都可以通过三个剪切变换序列完成。在这种情况下，旋转$45^{\circ}$可以按照式\ref{con:7.2}进行分解。}
+	\label{fig:7.15}
+\end{figure}	
+
+如果我们把$sj$四舍五入到最近的整数，这就相当于把图像中的每一行都向侧面移动了一定数量的栅格-其中每一行移动的栅格数量都不同。因为每一行的位移都是一样的，这就使得我们在旋转的过程中不会出现空隙。类似的操作也适用于垂直剪切。如此，我们可以很容易地实现一个简单的光栅旋转。
+
+\section{三维线性变换(3D Linear Transformations)}
+
+三维线性变换是二维变换的扩展。例如，沿笛卡尔轴的缩放为:
+
+\begin{equation}
+	\operatorname{scale}\left(s_x, s_y, s_z\right)=\left[\begin{array}{ccc}
+		s_x & 0 & 0 \\
+		0 & s_y & 0 \\
+		0 & 0 & s_z
+	\end{array}\right]
+\nonumber
+\end{equation}
 
 
